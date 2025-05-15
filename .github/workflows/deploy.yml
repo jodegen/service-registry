@@ -47,10 +47,9 @@ jobs:
             docker rm service-registry || true
             
             docker run -d \
-              --name api-gateway \
+              --name service-registry \
               --network microservices-net \
-              -p 8081:8081 \
-              -e AUTH_SERVICE_URL=${{ secrets.AUTH_SERVICE_URL }} \
+              -p 8761:8761 \
               -e SPRING_PROFILES_ACTIVE=prod \
-              -v /opt/microservices/api-gateway:/app/data \
-              ghcr.io/jodegen/api-gateway:latest
+              -v /opt/microservices/service-registry:/app/data \
+              ghcr.io/jodegen/service-registry:latest
